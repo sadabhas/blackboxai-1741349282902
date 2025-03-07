@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/tailwind">
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Weather App</h1>
+            <p class="text-gray-600">Check current weather and forecast for any city</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="max-w-md mx-auto mb-8">
+            <div class="flex gap-2">
+                <input type="text" id="cityInput" placeholder="Enter city name..." 
+                    class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="searchBtn" 
+                    class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="hidden">
+            <div class="flex justify-center items-center space-x-2">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                <span class="text-gray-600">Loading weather data...</span>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="hidden max-w-md mx-auto mb-8 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <span id="errorText"></span>
+        </div>
+
+        <!-- Current Weather -->
+        <div id="currentWeather" class="hidden max-w-md mx-auto mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="text-center">
+                    <h2 id="cityName" class="text-2xl font-semibold text-gray-800 mb-1"></h2>
+                    <p id="currentDate" class="text-gray-500 mb-4"></p>
+                </div>
+                <div class="flex items-center justify-center mb-4">
+                    <img id="weatherIcon" class="w-20 h-20" src="" alt="Weather icon">
+                    <div class="ml-4">
+                        <div id="temperature" class="text-5xl font-bold text-gray-800"></div>
+                        <div id="weatherDescription" class="text-gray-600 capitalize"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-temperature-high text-blue-500 mr-2"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Feels Like</p>
+                            <p id="feelsLike" class="font-semibold"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-wind text-blue-500 mr-2"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Wind Speed</p>
+                            <p id="windSpeed" class="font-semibold"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-tint text-blue-500 mr-2"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Humidity</p>
+                            <p id="humidity" class="font-semibold"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-compress-alt text-blue-500 mr-2"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Pressure</p>
+                            <p id="pressure" class="font-semibold"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Section -->
+        <div id="forecast" class="hidden max-w-4xl mx-auto">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">5-Day Forecast</h3>
+            <div id="forecastContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Forecast cards will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
